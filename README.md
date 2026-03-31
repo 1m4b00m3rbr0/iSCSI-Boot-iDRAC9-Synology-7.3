@@ -129,9 +129,48 @@ Set the following parameter:
 
 ```
 ISCSI_AUTO=true
+ISCSI_IBFT=true
 ```
 
 ![Prepare-OS-S2](Images/Prepare-OS-S2.png)
+
+Activate the neccesary modules:
+
+```bash
+nano /etc/initramfs-tools/modules
+```
+
+Set the following parameter:
+
+```
+iscsi_ibft
+iscsi_tcp
+```
+
+Then set the boot to iscsi:
+
+```bash
+nano /etc/initramfs-tools/initramfs.conf
+```
+
+Set the following parameter:
+
+```
+BOOT=iscsi
+```
+
+And set the initiator name:
+
+
+```bash
+nano /etc/iscsi/initiatorname.iscsi
+```
+
+Set the following parameter:
+
+```
+"InitiatorName=iqn.2026-03.rest-of-initiator-name..."
+```
 
 4. Update GRUB and the initial ramdisk:
 
